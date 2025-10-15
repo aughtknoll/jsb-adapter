@@ -94,6 +94,10 @@ var fsUtils = {
         jsb_downloader.createDownloadFileTask(remoteUrl, storagePath, header);
     },
 
+    abortAllDownload () {
+        jsb_downloader.abortAllDownload();
+    },
+
     saveFile (srcPath, destPath, onComplete) {
         var err = null;
         let result = fs.writeDataToFile(fs.getDataFromFile(srcPath), destPath);

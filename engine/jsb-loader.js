@@ -27,7 +27,7 @@
 'use strict';
 
 const cacheManager = require('./jsb-cache-manager');
-const { downloadFile, readText, readArrayBuffer, readJson, getUserDataPath, initJsbDownloader } = require('./jsb-fs-utils');
+const { downloadFile, readText, readArrayBuffer, readJson, getUserDataPath, initJsbDownloader, abortAllDownload  } = require('./jsb-fs-utils');
 
 const REGEX = /^\w+:\/\/.*/;
 const downloader = cc.assetManager.downloader;
@@ -371,6 +371,10 @@ cc.assetManager.transformPipeline.append(function (task) {
         }
     }
 });
+
+downloader.abortAll = function () {
+    abortAllDownload();
+};
 
 var originInit = cc.assetManager.init;
 cc.assetManager.init = function (options) {
